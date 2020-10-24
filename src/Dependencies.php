@@ -25,4 +25,11 @@ $injector->define('Mustache_Engine', [
     ],
 ]);
 
+$injector->define('NoFramework\Page\FilePageReader', [
+    ':pageFolder' => __DIR__ . '/../pages',
+]);
+
+$injector->alias('NoFramework\Page\PageReader', 'NoFramework\Page\FilePageReader');
+$injector->share('NoFramework\Page\FilePageReader');
+
 return $injector;
