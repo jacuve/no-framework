@@ -16,6 +16,7 @@ $injector->alias('Http\Response', 'Http\HttpResponse');
 $injector->share('Http\HttpResponse');
 
 $injector->alias('NoFramework\Template\Renderer', 'NoFramework\Template\TwigRenderer');
+$injector->alias('NoFramework\Template\FrontendRenderer', 'NoFramework\Template\FrontendTwigRenderer');
 
 $injector->define('Mustache_Engine', [
     ':options' => [
@@ -37,5 +38,8 @@ $injector->delegate('Twig\Environment', function () use ($injector) {
     $twig = new \Twig\Environment($loader);
     return $twig;
 });
+
+$injector->alias('NoFramework\Menu\MenuReader', 'NoFramework\Menu\ArrayMenuReader');
+$injector->share('NoFramework\Menu\ArrayMenuReader');
 
 return $injector;

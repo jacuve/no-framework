@@ -4,7 +4,7 @@ namespace NoFramework\Controllers;
 
 use Http\Request;
 use Http\Response;
-use NoFramework\Template\Renderer;
+use NoFramework\Template\FrontendRenderer;
 
 class Homepage
 {
@@ -13,7 +13,7 @@ class Homepage
     private $response;
     private $renderer;
 
-    public function __construct(Request $request, Response $response, Renderer $renderer)
+    public function __construct(Request $request, Response $response, FrontendRenderer $renderer)
     {
         $this->request = $request;
         $this->response = $response;
@@ -24,7 +24,7 @@ class Homepage
     {
     
         $data = [
-            'name' => $this->request->getParameter('name', 'stranger'),
+            'name' => $this->request->getParameter('name', 'stranger')
         ];
         $html = $this->renderer->render('Homepage', $data);
         $this->response->setContent($html);
