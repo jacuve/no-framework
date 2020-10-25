@@ -2,7 +2,7 @@
 
 namespace NoFramework\Page;
 
-use NoFramework\Page\InvalidPageException;
+use NoFramework\Page\   InvalidPageException;
 
 class FilePageReader implements PageReader
 {

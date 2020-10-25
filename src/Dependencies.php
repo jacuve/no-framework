@@ -15,7 +15,7 @@ $injector->define('Http\HttpRequest', [
 $injector->alias('Http\Response', 'Http\HttpResponse');
 $injector->share('Http\HttpResponse');
 
-$injector->alias('NoFramework\Template\Renderer', 'NoFramework\Template\MustacheRenderer');
+$injector->alias('NoFramework\Template\Renderer', 'NoFramework\Template\TwigRenderer');
 
 $injector->define('Mustache_Engine', [
     ':options' => [
@@ -31,5 +31,11 @@ $injector->define('NoFramework\Page\FilePageReader', [
 
 $injector->alias('NoFramework\Page\PageReader', 'NoFramework\Page\FilePageReader');
 $injector->share('NoFramework\Page\FilePageReader');
+
+$injector->delegate('Twig\Environment', function () use ($injector) {
+    $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/templates');
+    $twig = new \Twig\Environment($loader);
+    return $twig;
+});
 
 return $injector;
